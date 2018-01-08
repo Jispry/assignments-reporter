@@ -120,6 +120,12 @@ function runApp(auth) {
       commands.writeAssignmentsForPeriod(yargs.start + "T00:00:00.000Z", yargs.stop + "T23:00:00.000Z");
       console.log('period command');
     })
+    .command(['filter <name> <start> <stop>', 'f <name> <start> <end>'], 'the default command', () => {},
+    (yargs) => {
+      const filterFcn = (assignement) => { return assignement.name == yargs.name; };
+      commands.writeAssignmentsForPeriodFiltered(filterFcn, yargs.start + "T00:00:00.000Z", yargs.stop + "T23:00:00.000Z");
+      console.log('filter command');
+    })
     .command('*', 'the default command', () => { }, (yargs) => {
       commands.writeLastMonthAssignmentsToExcel();
       console.log('this command will be run by default');

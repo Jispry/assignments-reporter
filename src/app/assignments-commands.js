@@ -53,4 +53,16 @@ module.exports = class AssignmentsCommands {
             createExcelWritter().writeToExcel(templateExcelFile, assignments, 'assignemnts_' + from + '-'+ to + '.xlsx');
         });
     }
+
+    /**
+     * 
+     * @param {Function} filter
+     * @param {String} from 
+     * @param {String} to 
+     */
+    writeAssignmentsForPeriodFiltered(filterFcn, from, to) {
+        this._repository.getAssignementsForPeriod(from, to).then(function (assignments) {
+            createExcelWritter().writeToExcel(templateExcelFile, assignments.filter(filterFcn), 'assignemnts_filtered_' + from + '-'+ to + '.xlsx');
+        });
+    }
 };
