@@ -35,10 +35,6 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   authorize(JSON.parse(content), runApp);
 });
 
-process.argv.forEach(function (val, index, array) {
-  console.log(index + ': ' + val);
-});
-
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
@@ -118,6 +114,16 @@ function runApp(auth) {
   const repo = new AssignmentsRepository(calendar, auth, calendarId, dateUtils);
   const commands = new AssignmentsCommands(repo);
 
-  commands.writeLastMonthAssignmentsToExcel();
-  //commands.writeAssignmentsForPeriod("2018-01-01T23:00:00.000Z", "2018-01-06T23:00:00.000Z");
+  const argv = require('yargs')
+    .command(['period <start> <stop>', 'p <start> <end>'], 'the default command', () => {},
+    (yargs) => {
+      commands.writeAssignmentsForPeriod(yargs.start + "T00:00:00.000Z", yargs.stop + "T23:00:00.000Z");
+      console.log('period command');
+    })
+    .command('*', 'the default command', () => { }, (yargs) => {
+      commands.writeLastMonthAssignmentsToExcel();
+      console.log('this command will be run by default');
+    })
+    .help()
+    .argv;
 }
