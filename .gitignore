@@ -1,0 +1,6 @@
+node_modules
+.vscode
+report
+client_secret.json
+*.xlsx
+!assignmentsTemplate.xlsx

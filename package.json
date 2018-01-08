@@ -1,0 +1,28 @@
+{
+  "name": "assignments-reporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./src/app/**.spec.js",
+    "start": "node --harmony ./index.js",
+    "test:watch": "npm run test -- -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1",
+    "mocha": "^3.2.0",
+    "sinon": "^2.1.0",
+    "watchify": "^3.9.0"
+  },
+  "dependencies": {
+    "exceljs": "^0.4.3",
+    "googleapis": "^19.0.0",
+    "yargs": "^7.0.2"
+  }
+}
