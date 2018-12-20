@@ -72,14 +72,14 @@ describe('ExcelOutputWritter Tests', () => {
         expect(workbookSpy.getCall(0).args[0]).to.deep.equal(expectedTemplateFileName);
     });
 
-    it('should get worksheet 1', () => {
+    it('should get worksheet "Sheet"', () => {
         const workbookSpy = sinon.spy(fakeWorkbook, "getWorksheet");
 
         let sut = new ExcelOutputWritter(fakeWorkbook, configObj);
 
         sut.writeToExcel("template", []);
 
-        expect(workbookSpy.getCall(0).args[0]).to.deep.equal(1);
+        expect(workbookSpy.getCall(0).args[0]).to.deep.equal("Sheet");
     });
 
     it('should call getRow with value from configFile', () => {

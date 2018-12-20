@@ -4,7 +4,7 @@ const AssignmentsRepository = require('./assignments-repository.js');
 const ExcelOutputWritter = require('./excel-output-writter.js');
 const dateUtils = require('./dateUtils.js');
 
-const excelWritterConfig = {
+/*const excelWritterConfig = {
     startRow: 4,
     mapping: [
       { cell: 1, key: 'name' },
@@ -12,9 +12,18 @@ const excelWritterConfig = {
       { cell: 3, key: 'from' },
       { cell: 4, key: 'to' },
     ]
+};*/
+const excelWritterConfig = {
+    startRow: 10,
+    mapping: [
+      { cell: 5, key: 'name' },
+      { cell: 6, key: 'description' },
+      { cell: 2, key: 'from' },
+      { cell: 3, key: 'to' },
+    ]
 };
 
-const templateExcelFile = 'assignmentsTemplate.xlsx';
+const templateExcelFile = 'vykaz_Aardwark_template.xlsx';
 
 /**
  * @return {ExcelOutputWritter}

@@ -6,10 +6,27 @@
  */
 function writeToRow(row, item, mapping) {
     mapping.forEach((mappingItem) => {
-        row.getCell(mappingItem.cell).value = item[mappingItem.key];
+        row.getCell(mappingItem.cell).value = formatValue(item[mappingItem.key]);
     });
 
     row.commit();
+}
+
+/**
+ * 
+ * @param {any} value
+ * @returns {any}
+ */
+function formatValue(value) {
+    // todo FIX
+    if (value instanceof Date) {
+        return value.toLocaleString('sk', { timeZone: 'Europe/Vienna', hour12: false })
+            .replace(',', ''); // dirty hack
+    } else if (typeof value === 'string' || value instanceof String){
+        return value.replace(/\n/g, ', ');
+    } else {
+        return value;
+    }
 }
 
 module.exports = class ExcelOuputWritter {
@@ -30,7 +47,7 @@ module.exports = class ExcelOuputWritter {
      */
     writeToExcel(templateFileName, data, newFileName) {
         this._workBook.xlsx.readFile(templateFileName).then(() => {
-            const worksheet = this._workBook.getWorksheet(1);
+            const worksheet = this._workBook.getWorksheet("Sheet");
             let rowIndex = this._config.startRow;
             data.forEach((item) => {
                 const row = worksheet.getRow(rowIndex);

@@ -14,15 +14,6 @@ const TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
   process.env.USERPROFILE) + '/.credentials/';
 const TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
 const calendarId = 'aardwark.com_i7vev92e8auoo9rtg0a4b00hdc@group.calendar.google.com';
-const excelWritterConfig = {
-  startRow: 4,
-  mapping: [
-    { cell: 1, key: 'name' },
-    { cell: 2, key: 'description' },
-    { cell: 3, key: 'from' },
-    { cell: 4, key: 'to' },
-  ]
-};
 
 // Load client secrets from a local file.
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
