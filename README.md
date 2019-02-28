@@ -8,7 +8,7 @@ from defined time perion <start> <stop> returns only events with defined name
 
 example
 
-`npm start filter "eventName" 2018-05-16 2018-05-19`
+`npm start filter "eventName" 2019-05-16 2018-05-19`
 
 ### Period
 
@@ -18,4 +18,4 @@ returns all events from defined perion <start> <stop>
 
 example
 
-`npm start period 2018-05-16 2018-05-19`
+`npm start period 2019-05-16 2019-05-19`
