@@ -12,17 +12,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "jshint": "^2.9.4",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "jshint": "^2.10.3",
     "jshint-stylish": "^2.2.1",
-    "mocha": "^3.2.0",
-    "sinon": "^2.1.0",
-    "watchify": "^3.9.0"
+    "mocha": "^6.2.2",
+    "sinon": "^8.0.0",
+    "watchify": "^3.11.1"
   },
   "dependencies": {
-    "exceljs": "^0.4.3",
-    "googleapis": "^19.0.0",
-    "yargs": "^7.1.0"
+    "exceljs": "^3.5.0",
+    "googleapis": "^46.0.0",
+    "npm": "^6.13.1",
+    "yargs": "^15.0.0"
   }
 }

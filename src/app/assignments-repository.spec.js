@@ -71,30 +71,32 @@ describe('AssignmentsRepository Tests', () => {
             events: {
                 list: function (request, callback) {
                     callback(undefined, {
-                        items: [
-                            {
-                                "id": "bik5fva30698iplb2dbvj71s2s_20160601T061500Z",
-                                "summary": "name1",
-                                "description": "some description1",
-                                "start": {
-                                    "dateTime": "2017-01-01T10:00:00+02:00"
+                        data: {
+                            items: [
+                                {
+                                    "id": "bik5fva30698iplb2dbvj71s2s_20160601T061500Z",
+                                    "summary": "name1",
+                                    "description": "some description1",
+                                    "start": {
+                                        "dateTime": "2017-01-01T10:00:00+02:00"
+                                    },
+                                    "end": {
+                                        "dateTime": "2017-01-01T12:00:00+02:00"
+                                    },
                                 },
-                                "end": {
-                                    "dateTime": "2017-01-01T12:00:00+02:00"
-                                },
-                            },
-                            {
-                                "id": "bik5fva30698iplb2dbvj71s2s_20160601T061500Z",
-                                "summary": "name2",
-                                "description": "some description2",
-                                "start": {
-                                    "dateTime": "2017-01-01T13:00:00+02:00"
-                                },
-                                "end": {
-                                    "dateTime": "2017-01-01T16:00:00+02:00"
-                                },
-                            }
-                        ]
+                                {
+                                    "id": "bik5fva30698iplb2dbvj71s2s_20160601T061500Z",
+                                    "summary": "name2",
+                                    "description": "some description2",
+                                    "start": {
+                                        "dateTime": "2017-01-01T13:00:00+02:00"
+                                    },
+                                    "end": {
+                                        "dateTime": "2017-01-01T16:00:00+02:00"
+                                    },
+                                }
+                            ]
+                        }
                     });
                 }
             }

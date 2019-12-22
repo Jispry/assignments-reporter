@@ -1,8 +1,8 @@
 /**
- * 
- * @param {Object} row 
- * @param {Object} item 
- * @param {Array<{cell: number, key: string}>} mapping 
+ *
+ * @param {Object} row
+ * @param {Object} item
+ * @param {Array<{cell: number, key: string}>} mapping
  */
 function writeToRow(row, item, mapping) {
     mapping.forEach((mappingItem) => {
@@ -13,15 +13,21 @@ function writeToRow(row, item, mapping) {
 }
 
 /**
- * 
+ *
  * @param {any} value
  * @returns {any}
  */
 function formatValue(value) {
     // todo FIX
     if (value instanceof Date) {
-        return value.toLocaleString('sk', { timeZone: 'Europe/Vienna', hour12: false })
-            .replace(',', ''); // dirty hack
+        const stringSplit = value.toLocaleString('en-GB', { timeZone: 'Europe/Vienna', hour12: false })
+            .replace(',', '')
+            .split('/');
+        // hack
+        const swap = stringSplit[0];
+        stringSplit[0] = stringSplit[1];
+        stringSplit[1] = swap;
+        return stringSplit.join('/');
     } else if (typeof value === 'string' || value instanceof String){
         return value.replace(/\n/g, ', ');
     } else {
@@ -31,9 +37,9 @@ function formatValue(value) {
 
 module.exports = class ExcelOuputWritter {
     /**
-     * 
-     * @param {exceljs} exceljs 
-     * @param {{}} config 
+     *
+     * @param {exceljs} exceljs
+     * @param {{}} config
      */
     constructor(workBook, config) {
         this._workBook = workBook;
@@ -41,9 +47,9 @@ module.exports = class ExcelOuputWritter {
     }
 
     /**
-     * 
-     * @param {String} templateFileName 
-     * @param {Array<Object>} data 
+     *
+     * @param {String} templateFileName
+     * @param {Array<Object>} data
      */
     writeToExcel(templateFileName, data, newFileName) {
         this._workBook.xlsx.readFile(templateFileName).then(() => {

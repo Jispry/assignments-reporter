@@ -9,11 +9,11 @@ function mapEventToAssignment(event) {
 
 module.exports = class AssignmentsRepository {
     /**
-     * 
-     * @param {any} calendarApi 
-     * @param {any} auth 
-     * @param {String} calendarId 
-     * @param {DateUtils} dateUtils 
+     *
+     * @param {any} calendarApi
+     * @param {any} auth
+     * @param {String} calendarId
+     * @param {DateUtils} dateUtils
      */
     constructor(calendarApi, auth, calendarId, dateUtils) {
         this._api = calendarApi;
@@ -33,12 +33,12 @@ module.exports = class AssignmentsRepository {
         /**
          * @type {String}
          */
-        const toISO = this._dateUtils.getLastDayOfMonth().toISOString(); 
+        const toISO = this._dateUtils.getLastDayOfMonth().toISOString();
         return this.getAssignementsForPeriod(fromISO, toISO);
     }
 
     /**
-     * 
+     *
      * @param {String} from date ISOString
      * @param {String} to date ISOString
      * @return {Promise}
@@ -54,16 +54,15 @@ module.exports = class AssignmentsRepository {
             singleEvents: true,
             orderBy: 'startTime'
         };
-        var promise = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this._api.events.list(request, function (err, response) {
                 if (err) {
                     reject(err);
                 } else {
-                    var events = response.items.map(mapEventToAssignment);
+                    var events = response.data.items.map(mapEventToAssignment);
                     resolve(events);
                 }
             });
         });
-        return promise;
     }
 };

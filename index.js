@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
-const google = require('googleapis');
-const googleAuth = require('google-auth-library');
+const { google } = require('googleapis');
+
 const AssignmentsRepository = require('./src/app/assignments-repository.js');
 const AssignmentsCommands = require('./src/app/assignments-commands.js');
 //const dateUtils = require('./src/app/dateUtils_test.js');
@@ -34,11 +34,11 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-  var clientSecret = credentials.installed.client_secret;
-  var clientId = credentials.installed.client_id;
-  var redirectUrl = credentials.installed.redirect_uris[0];
-  var auth = new googleAuth();
-  var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
+  const clientSecret = credentials.installed.client_secret;
+  const clientId = credentials.installed.client_id;
+  const redirectUrl = credentials.installed.redirect_uris[0];
+  const oauth2Client = new google.auth.OAuth2(
+    clientId, clientSecret, redirectUrl);
 
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, function (err, token) {
@@ -92,7 +92,7 @@ function storeToken(token) {
   try {
     fs.mkdirSync(TOKEN_DIR);
   } catch (err) {
-    if (err.code != 'EEXIST') {
+    if (err.code !== 'EEXIST') {
       throw err;
     }
   }
