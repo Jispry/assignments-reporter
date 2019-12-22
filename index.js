@@ -60,12 +60,12 @@ function authorize(credentials, callback) {
  *     client.
  */
 function getNewToken(oauth2Client, callback) {
-  var authUrl = oauth2Client.generateAuthUrl({
+  const authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: SCOPES
   });
   console.log('Authorize this app by visiting this url: ', authUrl);
-  var rl = readline.createInterface({
+  const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
@@ -101,19 +101,19 @@ function storeToken(token) {
 }
 
 function runApp(auth) {
-  var calendar = google.calendar('v3');
+  const calendar = google.calendar('v3');
   const repo = new AssignmentsRepository(calendar, auth, calendarId, dateUtils);
   const commands = new AssignmentsCommands(repo);
 
   const argv = require('yargs')
-    .command(['period <start> <stop>', 'p <start> <end>'], 'the default command', () => {},
+    .command(['period <start> <stop>', 'p <start> <end>'], 'the period command', () => {},
     (yargs) => {
       commands.writeAssignmentsForPeriod(yargs.start + "T00:00:00.000Z", yargs.stop + "T23:00:00.000Z");
       console.log('period command');
     })
-    .command(['filter <name> <start> <stop>', 'f <name> <start> <end>'], 'the default command', () => {},
+    .command(['filter <name> <start> <stop>', 'f <name> <start> <end>'], 'the filter command', () => {},
     (yargs) => {
-      const filterFcn = (assignement) => { return assignement.name == yargs.name; };
+      const filterFcn = (assignement) => { return assignement.name === yargs.name; };
       commands.writeAssignmentsForPeriodFiltered(filterFcn, yargs.start + "T00:00:00.000Z", yargs.stop + "T23:00:00.000Z");
       console.log('filter command');
     })

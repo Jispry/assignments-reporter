@@ -35,16 +35,16 @@ function createExcelWritter() {
 
 module.exports = class AssignmentsCommands {
     /**
-     * 
-     * @param {AssignmentsRepository} assignmentsRepository 
+     *
+     * @param {AssignmentsRepository} assignmentsRepository
      */
     constructor(assignmentsRepository) {
         this._repository = assignmentsRepository;
     }
 
     /**
-     * 
-     * @param {Object} excelWritterConfig 
+     *
+     * @param {Object} excelWritterConfig
      */
     writeLastMonthAssignmentsToExcel() {
         this._repository.getLastMonthAssignments().then(function (assignments) {
@@ -53,9 +53,9 @@ module.exports = class AssignmentsCommands {
     }
 
     /**
-     * 
-     * @param {String} from 
-     * @param {String} to 
+     *
+     * @param {String} from
+     * @param {String} to
      */
     writeAssignmentsForPeriod(from, to) {
         this._repository.getAssignementsForPeriod(from, to).then(function (assignments) {
@@ -64,10 +64,10 @@ module.exports = class AssignmentsCommands {
     }
 
     /**
-     * 
+     *
      * @param {Function} filter
-     * @param {String} from 
-     * @param {String} to 
+     * @param {String} from
+     * @param {String} to
      */
     writeAssignmentsForPeriodFiltered(filterFcn, from, to) {
         this._repository.getAssignementsForPeriod(from, to).then(function (assignments) {
