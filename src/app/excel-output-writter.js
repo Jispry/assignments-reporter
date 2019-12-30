@@ -1,8 +1,21 @@
 /**
+ * @typedef {Object} ExcelOuputWritterConfig
+ * @property {string} sheet
+ * @property {number} startRow
+ * @property {Array<MappingItem>}mapping
+ */
+
+/**
+ * @typedef {Object} MappingItem
+ * @property {number} cell how the person is called
+ * @property {string} key how many years the person lived
+ */
+
+/**
  *
  * @param {Object} row
  * @param {Object} item
- * @param {Array<{cell: number, key: string}>} mapping
+ * @param {Array<MappingItem>} mapping
  */
 function writeToRow(row, item, mapping) {
     mapping.forEach((mappingItem) => {
@@ -39,7 +52,7 @@ module.exports = class ExcelOuputWritter {
     /**
      *
      * @param {exceljs} exceljs
-     * @param {{}} config
+     * @param {ExcelOuputWritterConfig} config
      */
     constructor(workBook, config) {
         this._workBook = workBook;
@@ -53,7 +66,7 @@ module.exports = class ExcelOuputWritter {
      */
     writeToExcel(templateFileName, data, newFileName) {
         this._workBook.xlsx.readFile(templateFileName).then(() => {
-            const worksheet = this._workBook.getWorksheet("Sheet");
+            const worksheet = this._workBook.getWorksheet(this._config.sheet);
             let rowIndex = this._config.startRow;
             data.forEach((item) => {
                 const row = worksheet.getRow(rowIndex);

@@ -1,8 +1,11 @@
 const Excel = require('exceljs');
 
 const AssignmentsRepository = require('./assignments-repository.js');
+
+/**
+ * @typedef {import('./excel-output-writter.js').ExcelOuputWritterConfig} ExcelOuputWritterConfig
+ */
 const ExcelOutputWritter = require('./excel-output-writter.js');
-const dateUtils = require('./dateUtils.js');
 
 /*const excelWritterConfig = {
     startRow: 4,
@@ -13,7 +16,12 @@ const dateUtils = require('./dateUtils.js');
       { cell: 4, key: 'to' },
     ]
 };*/
+
+/**
+ * @type {ExcelOuputWritterConfig}
+ */
 const excelWritterConfig = {
+    sheet: 'TimeSheet',
     startRow: 10,
     mapping: [
       { cell: 5, key: 'name' },
@@ -29,7 +37,7 @@ const templateExcelFile = 'vykaz_Aardwark_template.xlsx';
  * @return {ExcelOutputWritter}
  */
 function createExcelWritter() {
-    let workbook = new Excel.Workbook();
+    const workbook = new Excel.Workbook();
     return new ExcelOutputWritter(workbook, excelWritterConfig);
 }
 
