@@ -18,4 +18,4 @@ returns all events from defined perion <start> <stop>
 
 example
 
-`npm start period 2019-05-16 2019-05-19`
+`npm start period 2020-05-16 2020-05-19`
